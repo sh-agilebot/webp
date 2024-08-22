@@ -2,6 +2,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+//go:build cgo
 // +build cgo
 
 package webp
@@ -95,6 +96,6 @@ func Decode(r io.Reader) (m image.Image, err error) {
 	return
 }
 
-func init() {
-	image.RegisterFormat("webp", "RIFF????WEBPVP8", Decode, DecodeConfig)
-}
+//func init() {
+//	image.RegisterFormat("webp", "RIFF????WEBPVP8", Decode, DecodeConfig)
+//}

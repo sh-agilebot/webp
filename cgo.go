@@ -4,6 +4,7 @@
 
 package webp
 
+// #cgo CFLAGS: -Wno-xor-used-as-pow
 //#include "webp.h"
 import "C"
 import "unsafe"
@@ -180,7 +181,7 @@ func C_webpEncodeLosslessRGBA(
 	output_size *C_size_t,
 ) *C_uint8_t {
 	return (*C_uint8_t)(C.webpEncodeLosslessRGBA(
-		(C.int) (exact),
+		(C.int)(exact),
 		(*C.uint8_t)(pix),
 		(C.int)(width), (C.int)(height), (C.int)(stride),
 		(*C.size_t)(output_size),

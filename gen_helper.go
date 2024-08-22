@@ -2,6 +2,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+//go:build ingore
 // +build ingore
 
 package main
@@ -26,7 +27,8 @@ func main() {
 	printOldGenFiles()
 }
 
-const wver="1.2.1"
+const wver = "1.2.1"
+
 func clearOldGenFiles() {
 	ss, err := filepath.Glob("z_*.c")
 	if err != nil {
@@ -39,8 +41,8 @@ func clearOldGenFiles() {
 }
 
 func genIncludeFiles() {
-	s1:=fmt.Sprintf("internal/libwebp-%s/CMakeLists.txt",wver)
-	s2:=fmt.Sprintf("internal/libwebp-%s/src/mux",wver)
+	s1 := fmt.Sprintf("internal/libwebp-%s/CMakeLists.txt", wver)
+	s2 := fmt.Sprintf("internal/libwebp-%s/src/mux", wver)
 	ss := parseCMakeListsTxt(s1, "WEBP_SRC_DIR", "*.c")
 	muxSS, err := findFiles(s2, "*.c")
 	if err != nil {
@@ -120,6 +122,6 @@ func parseCMakeListsTxt(filename, varname, ext string) (ss []string) {
 	return
 }
 
-func findFiles(dir, ext string) ([]string, error){
+func findFiles(dir, ext string) ([]string, error) {
 	return filepath.Glob(fmt.Sprintf("%s/%s", dir, ext))
 }
